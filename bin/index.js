@@ -1,5 +1,4 @@
 const cwd = process.cwd();
-const express = require('express');
 const app = express();
 const cliColor = require('cli-color');
 let runApp = false;
