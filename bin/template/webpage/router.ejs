@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+
+router.get('/login', (req,res) => {
+    res.end('Router: You are login now(naaaa you are not)');
+});
+
+router.get('/logout', (req,res) => {
+    res.end('Router: You are logout now, have a great one');
+});
+module.exports = router;

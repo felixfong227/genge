@@ -1,0 +1,9 @@
+{
+  "name": "genge",
+  "version": "1.0.0",
+  "description": "A simple CLI that help create express app more easily",
+  "main": "bin/index.js",
+  "repository": "https://github.com/felixfong227/genge",
+  "author": "@felixfong227 <moongod101@hotmail.com> (http://felixfong227.ml)",
+  "license": "MIT"
+}
