@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const cwd = process.cwd();
 const cliColor = require('cli-color');
 let runApp = false;
