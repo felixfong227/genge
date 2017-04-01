@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/login', (req,res) => {
-    res.end('Router: You are login now(naaaa you are not)');
+router.get('<%=path%>', (req,res) => {
+    res.end('It works!');
 });
 
 module.exports = router;

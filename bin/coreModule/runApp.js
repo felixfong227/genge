@@ -69,7 +69,9 @@ module.exports = appPath =>{
             console.log(`==== ` + `${color.info(`${installerName} Logs`)}` + ` ====`);
             console.log(data)
             console.log(`==== ` + `${color.success("Package is installed")}` + ` ====`);
-            startServer();
+            if(mainObject.runApp){
+                startServer();
+            }
         });
 
     }

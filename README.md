@@ -14,13 +14,13 @@ $ genge [option] [option] --flat --flat
 
 ## Create your first app
 ```
-$ genge create app appName
+$ genge add app pony.com
 ```
 Genge will create some start up folders and files
 ```
 <Current working directory>
 |
-+-- <appName>/
++-- pony.com/
 	|
     +-- public/
     |	|
@@ -57,3 +57,31 @@ You can use the `--run` flat to tell Genge run the app as soon as everything is 
 You can also use the `--open` flat to tell Gegen then everything is OK, open the browser and load your express app
 
 PS: Require the `--run` flat to do so
+
+# Router
+
+# Create a new router
+```
+$ genge add router pony/ponyville/isfun
+```
+
+```
+<Current working directory>
+|
++-- pony.com/
+	|
+    +-- public/
+    |	|
+    |   +-- index.ejs
+    |   +-- style.css
+    |   +-- package.json
+    +-- router/
+    |	|
+   	|   +-- login.js
+    |   +-- pony/
+    |       |
+    |       +-- ponyville/
+    |           |
+    |           +-- isfun.js
+    +-- index.js
+```

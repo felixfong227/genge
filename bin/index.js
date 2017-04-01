@@ -52,13 +52,18 @@ module.exports = {
 };
 
 // Get the main action
+const appPath = path.join(`${cwd}/${cli.args[2]}`);
 switch(cli.args[0]){
-    case 'create':
+    case 'add':
         // Get the secon action
         switch(cli.args[1]){
             // Creating a new app(project)
             case 'app':
-                require('./create/app')(path.join(`${cwd}/${cli.args[2]}`));
+                require('./create/app/app')(appPath);
+            break;
+            
+            case 'router':
+                require('./create/router/router')(cli.args[2])
             break;
         }
     break;

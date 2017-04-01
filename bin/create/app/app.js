@@ -2,7 +2,7 @@ module.exports = appPath => {
     const fs = require('fs');
     const path = require('path');
     const ejs = require('ejs');
-    const mainObject = require('../index');
+    const mainObject = require('../../index');
     const cliColor = require('cli-color');
     const color = {
         error: cliColor.red
@@ -15,8 +15,16 @@ module.exports = appPath => {
     }
     // Create some basic placeholder file
 
+    // Create the .genge floder
+    // Letting genge know this is a indead a Express Genge app
+    fs.exists(`${appPath}/.genge`, exists => {
+        if(!exists){
+            fs.mkdirSync(`${appPath}/.genge`);
+        }
+    });
+
     // Grap the template file(webpage)
-    fs.readFile(path.join(`${__dirname}/../template/webpage/mainApp.ejs`), 'utf-8', (error, ejsFile) => {
+    fs.readFile(path.join(`${__dirname}/../../template/webpage/mainApp.ejs`), 'utf-8', (error, ejsFile) => {
         const code = ejs.render(ejsFile, {
             port: mainObject.port
             ,name: path.basename(appPath)

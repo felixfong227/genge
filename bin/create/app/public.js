@@ -1,7 +1,7 @@
 module.exports = appPath => {
     const fs = require('fs');
     const path = require('path');
-    const mainObject = require('../index');
+    const mainObject = require('../../index');
     const cliColor = require('cli-color');
     const color = {
         error: cliColor.red
