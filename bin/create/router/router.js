@@ -50,8 +50,6 @@ module.exports = appPath => {
 // https://${path.basename(cwd)}.com/${appPath}
 app.use('/${routerPath}', require(\`$\{__dirname\}/router/${appPath}\`));
     `;
-            console.log(appPath)
-            process.exit();
             fs.writeFile(`${cwd}/index.js`,data, error => {
                 if(error){
                     console.log(`${color.error("EREOR")}: Something when wrong while trying to updating the index.js`);
