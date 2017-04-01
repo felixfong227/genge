@@ -20,15 +20,25 @@ module.exports = appPath => {
         const fullAppPath = path.join(`${appPath}/index.js`);
         console.log(`${color.info("INFO")}: $ node ${fullAppPath}`);
         const spawn = require('child_process').spawn;
-        const ls = spawn('node', [`${fullAppPath}`]);
+        const appRunner = spawn('node', [`${fullAppPath}`]);
+        if(mainObject.cli.open){
+            require('open')(`http://localhost:${mainObject.port}`);
+        }
         console.log(`==== ` + `${color.info("Server Logs")}` + ` ====`);
-        ls.stdout.on('data', function (data) {
+        appRunner.stdout.on('data', function (data) {
             console.log(`${color.success("SUCCESS")}: ${data.toString()}`);
         });
 
-        ls.stderr.on('data', function (data) {
+        appRunner.stderr.on('data', function (data) {
             console.log(`${color.error("ERROR")}: ${data.toString()}`);
+            process.exit();
         });
+
+        appRunner.on('exit', function (code) {
+            console.log(`${color.info("INFO")}: Genge Express app is closing`);
+            process.exit();
+        });
+
     }
 
     fs.readFile(`${__dirname}/../template/static/index.ejs`,'utf-8', (error, ejsCode) => {
