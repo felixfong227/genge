@@ -21,6 +21,8 @@ cli
     .option('--port <port>', 'Set the application port')
     .option('--run', 'Run the app as soon as it finish')
     .option('--open', 'Open the browser once is finish installing')
+    .option('--npm', '<Run app> Using NPM(Default) to install package')
+    .option('--yarn', '<Run app> Using Yarn(Recommand) to install package')
     .parse(process.argv)
 
 if(typeof cli.port == 'undefined'){
@@ -34,6 +36,12 @@ if(typeof cli.run == 'undefined'){
     runApp = false;
 }else{
     runApp = true;
+}
+
+if(typeof cli.yarn == 'undefined'){
+    console.log(`${color.warning("WARNING")}: The default package installer will be NPM, but you can use --yarn`);
+}else{
+    console.log(`${color.warning("WARNING")}: Using Yarn as the package installer`);
 }
 
 module.exports = {
