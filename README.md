@@ -1,9 +1,9 @@
 # Genge
-`yarn global add genge`
+`yarn global add https://github.com/felixfong227/genge.git`
 
 or
 
-`npm -g install genge`
+`npm -g install https://github.com/felixfong227/genge.git`
 
 A simple `ExpressJS` template generator
 
