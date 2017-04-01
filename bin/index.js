@@ -67,4 +67,13 @@ switch(cli.args[0]){
             break;
         }
     break;
+
+    case 'remove':
+        switch(cli.args[1]){
+            case 'router':
+                require('./remove/router/router')(cli.args[2]);
+            break;
+        }
+    break;
+
 }

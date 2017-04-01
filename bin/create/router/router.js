@@ -16,7 +16,7 @@ module.exports = appPath => {
     }
     
     const jsFile = path.basename(appPath);
-    routerPath = appPath.split(jsFile)[0];
+    routerPath = path.join(appPath.split(jsFile)[0]);
 
     // Check the appPath is instead a Genge app
     if(!fs.existsSync(`${cwd}/.genge`)){

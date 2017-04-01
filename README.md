@@ -85,3 +85,8 @@ $ genge add router pony/ponyville/isfun
     |           +-- isfun.js
     +-- index.js
 ```
+
+# Removing the router
+```
+$ genge remove router pony/ponyville/isfun
+```
