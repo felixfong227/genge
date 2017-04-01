@@ -17,8 +17,9 @@ const packageJSON = JSON.parse(fs.readFileSync(path.join(`${__dirname}/../packag
 
 cli
     .version(packageJSON.version)
-    .option('-p, --port <port>', 'Set the application port')
-    .option('-r --run', 'Run the app as soon as it finish')
+    .option('--port <port>', 'Set the application port')
+    .option('--run', 'Run the app as soon as it finish')
+    .option('--open', 'Open the browser once is finish installing')
     .parse(process.argv)
 
 if(typeof cli.port == 'undefined'){
@@ -38,6 +39,7 @@ module.exports = {
     packageJSON: packageJSON
     ,port: port
     ,runApp: runApp
+    ,cli: cli
 };
 
 // Get the main action
