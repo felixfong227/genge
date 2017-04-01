@@ -7,6 +7,7 @@ module.exports = appPath => {
     let routerPath = path.join(`${cwd}/router/${appPath}`);
     const fse = require('fs-extra');
     const ejs = require('ejs');
+    const url = require('url');
     const color = {
         error: cliColor.red
         ,warning: cliColor.yellow
@@ -42,13 +43,15 @@ module.exports = appPath => {
     function updateTheIndexJS(){
         // The router is created, then update the index.js to start using it
         fs.readFile(`${cwd}/index.js`,'utf-8', (error, data) => {
+
             data += `
 
 // Genge Router:
 // https://${path.basename(cwd)}.com/${appPath}
-app.use('/${routerPath}', require(\`$\{__dirname\}/router/${appPath.slice(0, -1)}\`));
+app.use('/${routerPath}', require(\`$\{__dirname\}/router/${appPath}\`));
     `;
-
+            console.log(appPath)
+            process.exit();
             fs.writeFile(`${cwd}/index.js`,data, error => {
                 if(error){
                     console.log(`${color.error("EREOR")}: Something when wrong while trying to updating the index.js`);
