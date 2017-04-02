@@ -27,7 +27,7 @@ module.exports = appPath => {
     }
 
     const workingRouterPath = path.join(`${cwd}/router/${routerPath}`)
-    if(!fs.existsSync( workingRouterPath )){
+    if(!fs.existsSync( path.join(`${workingRouterPath}/${jsFile}.js`) )){
         fse.mkdirp( workingRouterPath , error => {
             if(error){
                 console.log(`${color.error("EREOR")}: Something when wrong while trying to creating the router for you`);
