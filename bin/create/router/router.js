@@ -14,15 +14,16 @@ module.exports = appPath => {
         ,success: cliColor.greenBright
         ,info: cliColor.blue
     }
+    const logs = require('../../coreModule/logs');
     
     const jsFile = path.basename(appPath);
     routerPath = path.join(appPath.split(jsFile)[0]);
 
     // Check the appPath is instead a Genge app
     if(!fs.existsSync(`${cwd}/.genge`)){
-        console.log(`${color.error("ERROR")}: This is not an Genge app`);
-        console.log(`${color.info("INFO")}: Please making sure you are using Genge CLI to create a new app`);
-        console.log(`${color.info("INFO")}: For more information please visit https://github.com/felixfong227/genge`);
+        logs(`This is not an Genge app`, 'error');
+        logs(`Please making sure you are using Genge CLI to create a new app`, 'info');
+        logs(`For more information please visit https://github.com/felixfong227/genge`, 'info');
         process.exit();
     }
 
@@ -30,13 +31,13 @@ module.exports = appPath => {
     if(!fs.existsSync( path.join(`${workingRouterPath}/${jsFile}.js`) )){
         fse.mkdirp( workingRouterPath , error => {
             if(error){
-                console.log(`${color.error("EREOR")}: Something when wrong while trying to creating the router for you`);
+                logs(`Something when wrong while trying to creating the router for you`, 'error');
             }
-            console.log(`${color.success("SUCCESS")}: /router/${appPath} is created`);
+            logs(`/router/${appPath} is created`, 'success');
             updateTheIndexJS();
         });
     }else{
-        console.log(`${color.info("INFO")}: /router/${appPath} is already exists`);
+        logs(`/router/${appPath} is already exists`, 'info');
     }
 
 
@@ -52,16 +53,16 @@ app.use('/${routerPath}', require(\`$\{__dirname\}/router/${appPath}\`));
     `;
             fs.writeFile(`${cwd}/index.js`,data, error => {
                 if(error){
-                    console.log(`${color.error("EREOR")}: Something when wrong while trying to updating the index.js`);
+                    logs(`Something when wrong while trying to updating the index.js`, 'error');
                 }
 
                 // Get the router.js into the user router directory
                 fs.readFile(`${__dirname}/../../template/webpage/createRouter.ejs`, 'utf-8', (error, ejsCode) => {
                     fs.writeFile(path.join(`${workingRouterPath}/${jsFile}.js`), ejs.render(ejsCode,{path: `/${jsFile}`}), error => {
                         if(error){
-                            console.log(`${color.error("EREOR")}: Something when wrong while trying to creating the ${jsFile}.js at the router session`);
+                            logs(`Something when wrong while trying to creating the ${jsFile}.js at the router session`, 'error');
                         }
-                        console.log(`${color.success("SUCCESS")}: /router/${appPath} is available now`);     
+                        logs(`/router/${appPath} is available now`, 'success');
                     });
                 });
             });

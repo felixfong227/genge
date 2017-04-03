@@ -14,17 +14,18 @@ module.exports = appPath => {
         ,success: cliColor.greenBright
         ,info: cliColor.blue
     }
+    const logs = require('../../coreModule/logs');
     
     const jsFile = path.basename(appPath);
     routerPath = path.join(appPath.split(jsFile)[0]);
     if(!fs.existsSync( path.join(`${cwd}/router/${routerPath}`) )){
-        console.log(`${color.error("EREOR")}: ${routerPath} is not an exists`);
+        logs(`${routerPath} is not an exists`, 'error');
         process.exit();
     }
 
     fs.readdir( path.join(`${cwd}/router/${routerPath}`), (error, files) => {
         if(error){
-            console.log(`${color.error("EREOR")}: Something when wrong while trying to reading the directory`);
+            logs(`Something when wrong while trying to reading the directory`, 'error');
         }
 
         files.forEach(fileName => {
@@ -33,9 +34,9 @@ module.exports = appPath => {
 
         fs.rmdir( path.join(`${cwd}/router/${routerPath}/`), error => {
             if(error){
-                console.log(`${color.error("EREOR")}: Something when wrong while trying to removing the router path`);
+                logs(`Something when wrong while trying to removing the router path`, 'error');
             }
-            console.log(`${color.success("SUCCESS")}: Router has been removed`);
+            logs(`Router has been removed`, 'success');
         });
 
     });

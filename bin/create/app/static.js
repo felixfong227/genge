@@ -9,9 +9,9 @@ module.exports = appPath => {
         ,success: cliColor.greenBright
         ,info: cliColor.blue
     }
-
+    const logs = require('../../coreModule/logs');
     function throwError(fileName){
-        console.log(`${color.error("ERROR")}: Something when wrong while trying to create the ${fileName} for your app entry point`);
+        logs(`Something when wrong while trying to create the ${fileName} for your app entry point`, 'error');
     }
 
     fs.readFile(`${__dirname}/../../template/static/index.ejs`,'utf-8', (error, ejsCode) => {
@@ -19,13 +19,13 @@ module.exports = appPath => {
             if(error){
                 throwError('index.ejs')
             }else{
-                console.log(`${color.success("SUCCESS")}: index.ejs has been created`);
+                logs(`index.ejs has been created`, 'success');
                 fs.readFile(`${__dirname}/../../template/static/style.css`, 'utf-8', (error,  cssCode) => {
                     fs.writeFile(`${appPath}/public/style.css`, cssCode, error => {
                         if(error){
                             throwError('style.css');
                         }
-                        console.log(`${color.success("SUCCESS")}: style.css has been created`);
+                        logs(`style.css has been created`, 'success');
                         require('../../coreModule/runApp')(appPath);
                     });
                 });

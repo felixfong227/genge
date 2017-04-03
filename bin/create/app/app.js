@@ -9,6 +9,7 @@ module.exports = appPath => {
         ,warning: cliColor.yellow
         ,success: cliColor.greenBright
     }
+    const logs = require('../../coreModule/logs');
     // Creating a new project directory
     if(!fs.existsSync(appPath)){
         fs.mkdirSync(appPath)
@@ -31,9 +32,9 @@ module.exports = appPath => {
         });
         fs.writeFile(`${appPath}/index.js`, code, error => {
             if(error){
-                console.log(`${color.error("ERROR")}: Something when wrong while trying to create the index.js for your app entry point`);
+                logs(`Something when wrong while trying to create the index.js for your app entry point`, 'error');
             }else{
-                console.log(`${color.success("SUCCESS")}: index.js app entry pont has been created`);
+                logs(`index.js app entry pont has been created`, 'success');
                 // Creater router
                 require('./router')(appPath);
             }

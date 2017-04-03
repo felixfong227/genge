@@ -5,6 +5,7 @@ module.exports = appPath =>{
     const spawn = require('child_process').spawn;
     const fullAppPath = path.join(`${appPath}/index.js`);
     const fs = require('fs');
+    const logs = require('../coreModule/logs');
 
     const packages = [
         'express'
@@ -22,7 +23,7 @@ module.exports = appPath =>{
     // Installing all the packages
     
     // Check if using Yarn or NPM
-    console.log(`${color.info("INFO")}: Installing all the packages`);
+    logs(`Installing all the packages`, 'info');
     if(mainObject.cli.yarn){
         installPakcage('Yarn');
     }else{
@@ -31,8 +32,8 @@ module.exports = appPath =>{
 
     function startServer(){
     
-        console.log(`${color.info("INFO")}: Running express server`);
-        console.log(`${color.info("INFO")}: $ node ${fullAppPath}`);
+        logs(`Running express server`, 'info');
+        logs(`$ node ${fullAppPath}`, 'info');
         const appRunner = spawn('node', [`${fullAppPath}`]);
         if(mainObject.cli.open){
             require('open')(`http://localhost:${mainObject.port}`);
@@ -41,16 +42,16 @@ module.exports = appPath =>{
         console.log(`==== ` + `${color.info("Server Logs")}` + ` ====`);
 
         appRunner.stdout.on('data', function (data) {
-            console.log(`${color.success("SUCCESS")}: ${data.toString()}`);
+            logs(`${data.toString()}`, 'success');
         });
 
         appRunner.stderr.on('data', function (data) {
-            console.log(`${color.error("ERROR")}: ${data.toString()}`);
+            logs(`${data.toString()}`, 'error');
             process.exit();
         });
 
         appRunner.on('exit', function (code) {
-            console.log(`${color.info("INFO")}: Genge Express app is closing`);
+            logs(`Genge Express app is closing`, 'info');
             process.exit();
         });
 
@@ -60,10 +61,10 @@ module.exports = appPath =>{
         const packageDotJSON = JSON.parse( fs.readFileSync(`${__dirname}/../template/JSON/package.json`, 'utf-8') );
         // Create a package.json 
         fs.writeFileSync(`${appPath}/package.json`, JSON.stringify(packageDotJSON, null, 2));
-        console.log(`${color.success("SUCCESS")}: package.json has been created`);
+        logs(`package.json has been created`, 'success');
         // Run the install command
         const command = `${installerName.toLowerCase()} install`;
-        console.log(`${color.info("INFO")}: $ ${command}`);
+        logs(`$ ${command}`, 'info');
         require('child_process').execSync(`cd ${appPath} && ${installerName.toLowerCase()} install`);
         require('child_process').exec(command, (error, data) => {
             console.log(`==== ` + `${color.info(`${installerName} Logs`)}` + ` ====`);
