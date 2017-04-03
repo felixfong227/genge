@@ -3,7 +3,6 @@ const cwd = process.cwd();
 const cliColor = require('cli-color');
 let runApp = false;
 const logs = require('./coreModule/logs');
-logs('Howdy', 'error')
 const color = {
     error: cliColor.red
     ,warning: cliColor.yellow
