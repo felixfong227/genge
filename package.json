@@ -26,9 +26,11 @@
     "fs-extra": "^2.1.2",
     "open": "^0.0.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -t 100000"
   },
   "keywords": [
     "express",
