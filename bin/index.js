@@ -3,12 +3,6 @@ const cwd = process.cwd();
 const cliColor = require('cli-color');
 let runApp = false;
 const logs = require('./coreModule/logs');
-const color = {
-    error: cliColor.red
-    ,warning: cliColor.yellow
-    ,success: cliColor.greenBright
-    ,info: cliColor.blue
-}
 
 // Set up a default port
 let port = 8080;
@@ -27,10 +21,10 @@ cli
     .parse(process.argv)
 
 if(typeof cli.port == 'undefined'){
-    console.log(`${color.warning("WARNING")}: The default port will be ${port}`);
+    logs(`The default port will be ${port}`, 'warning');
 }else{
     port = cli.port;
-    console.log(`${color.info("INFO")}: Using port ${port}`);
+    logs(`Using port ${port}`, 'info');
 }
 
 if(typeof cli.run == 'undefined'){
@@ -40,9 +34,9 @@ if(typeof cli.run == 'undefined'){
 }
 
 if(typeof cli.yarn == 'undefined'){
-    console.log(`${color.warning("WARNING")}: The default package installer will be NPM, but you can use --yarn`);
+    logs(`The default package installer will be NPM, but you can use --yarn`, 'warning');
 }else{
-    console.log(`${color.warning("WARNING")}: Using Yarn as the package installer`);
+    logs(`Using Yarn as the package installer`, 'warning');
 }
 
 module.exports = {
@@ -77,4 +71,8 @@ switch(cli.args[0]){
         }
     break;
 
+    default:
+        logs('For more information, please use the --help flat', 'info');
+        logs('Docs is also available at GitHub https://github.com/felixfong227/genge', 'info');
+        logs(`Can't not find your command`, 'error');
 }
