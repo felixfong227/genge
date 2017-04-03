@@ -18,19 +18,16 @@ $ genge add app pony.com
 ```
 Genge will create some start up folders and files
 ```
-<Current working directory>
-|
-+-- pony.com/
-	|
-    +-- public/
-    |	|
-    |   +-- index.ejs
-    |   +-- style.css
-    |   +-- package.json
-    +-- router/
-    |	|
-   	|   +--login.js
-    +-- index.js
+.
+├── index.js
+├── node_modules/
+├── package.json
+├── public/
+│   ├── index.ejs
+│   └── style.css
+├── router/
+│   └── login.js
+└── yarn.lock
 ```
 And with the `--run` flat, what you can do is as soon as Genge finish creating thought files and folder, it will run the app right a way
 
@@ -66,24 +63,18 @@ $ genge add router pony/ponyville/isfun
 ```
 
 ```
-<Current working directory>
-|
-+-- pony.com/
-	|
-    +-- public/
-    |	|
-    |   +-- index.ejs
-    |   +-- style.css
-    |   +-- package.json
-    +-- router/
-    |	|
-   	|   +-- login.js
-    |   +-- pony/
-    |       |
-    |       +-- ponyville/
-    |           |
-    |           +-- isfun.js
-    +-- index.js
+.
+├── index.js
+├── package.json
+├── public/
+│   ├── index.ejs
+│   └── style.css
+├── router/
+│   ├── login.js
+│   └── pony/
+│       └── ponyville/
+│           └── isfun.js
+└── yarn.lock
 ```
 
 # Removing the router
