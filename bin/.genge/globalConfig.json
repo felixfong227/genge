@@ -1,0 +1,10 @@
+// Default
+// I want to use Yarn as default too, but for compatibility reason (╯°□°）╯︵ ┻━┻
+// But now what you can do is change it to Yarn, so you don't have to add the --yarn flat every sing fu***** times ƪ(˘⌣˘)ʃ
+// That really make you feels good right? Using Yarn instead of NPM? ƪ(˘⌣˘)ʃ
+// You you you don't have thinking about the life while waiting NPM to install your package? cuz Yarn just finish it right a way ƪ(˘⌣˘)ʃ
+// Is this version of Genge only support NPM and Yarn
+// If you change it other then that, Genge will throw an error into your face right a way, so you really don't want to do that :/
+{
+  "packageInstaller": "yarn"
+}

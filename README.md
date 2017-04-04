@@ -81,3 +81,11 @@ $ genge add router pony/ponyville/isfun
 ```
 $ genge remove router pony/ponyville/isfun
 ```
+
+# Config file
+This version of Genge, what you can config is
+1. Package Installer (NPM, Yarn)
+
+```
+$ genge config global
+```

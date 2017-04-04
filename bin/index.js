@@ -33,10 +33,59 @@ if(typeof cli.run == 'undefined'){
     runApp = true;
 }
 
-if(typeof cli.yarn == 'undefined'){
-    logs(`The default package installer will be NPM, but you can use --yarn`, 'warning');
+// Check if there is an global config file
+if(fs.existsSync(path.join(`${__dirname}/.genge/globalConfig.json`))){
+
+    // There is an globalConfig file
+
+    // Read the globalConfig file
+
+    fs.readFile(path.join(`${__dirname}/.genge/globalConfig.json`), 'utf-8', (error, jsonString) => {
+        if(error){
+            logs(`Genge can't read your globalConfig.json file`, 'error');
+        }
+        let findInstaller = false;
+        const supportedPackageInstaller = [
+            'yarn',
+            'npm'
+        ];
+
+        // Remove all the comment and trim down the globalConfig.json
+
+        // @felixfong227: Hay, I didn't know I'm good at Regex ¯\_(ツ)_/¯
+        // Stackoverflow || Google: Really? ¬_¬
+        // BTW: https://regex101.com/ is a good tool for hacking regex ;)
+
+        jsonString = jsonString.replace(/\/\/(.*)/gi, '')
+        jsonString = jsonString.split('\n').join('').split(' ').join('');
+        const config = JSON.parse(jsonString);
+
+        supportedPackageInstaller.forEach(installerName => {
+            if(config.packageInstaller == installerName){
+                findInstaller = true;
+            }
+        });
+
+        if(!findInstaller){
+            logs(`I told you, Genge  will throw an error into your face, cuz Genge didn't konw what the hack is ${config.packageInstaller}`, 'error');
+        }
+
+        if(config.packageInstaller == "yarn"){
+            cli.yarn = true;
+        }else if(config.packageInstaller == 'npm'){
+            cli.yarn = false;
+        }
+
+    });
+
 }else{
-    logs(`Using Yarn as the package installer`, 'warning');
+
+    if(typeof cli.yarn == 'undefined'){
+        logs(`The default package installer will be NPM, but you can use --yarn`, 'warning');
+    }else{
+        logs(`Using Yarn as the package installer`, 'warning');
+    }
+
 }
 
 module.exports = {
@@ -67,6 +116,17 @@ switch(cli.args[0]){
         switch(cli.args[1]){
             case 'router':
                 require('./remove/router/router')(cli.args[2]);
+            break;
+        }
+    break;
+
+    // Updating the global config for the Genge CLI
+
+    case 'config':
+        switch(cli.args[1]){
+            // global
+            case 'global':
+                require('./config/globalConfig')(__dirname);
             break;
         }
     break;
