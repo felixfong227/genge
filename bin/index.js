@@ -22,6 +22,7 @@ cli
     .option('--open', 'Open the browser once is finish installing')
     .option('--npm', '<Run app> Using NPM(Default) to install package')
     .option('--yarn', '<Run app> Using Yarn(Recommand) to install package')
+    .option('--beta', 'Checking the GitHub release version instead of the NPM')
     .parse(process.argv)
 
 if(typeof cli.port == 'undefined'){
@@ -138,6 +139,14 @@ switch(cli.args[0]){
 
     case 'config':
         require('./config/config')(__dirname, cli.args[1]);
+    break;
+
+    case 'update':
+        if(!cli.beta){
+            require('./version/normal')();
+        }else{
+            require('./version/beta')();
+        }
     break;
 
     default:
