@@ -27,17 +27,17 @@ module.exports = appPath => {
         process.exit();
     }
 
-    const workingRouterPath = path.join(`${cwd}/router/${routerPath}`)
+    const workingRouterPath = path.join(`${cwd}/${mainObject.using.router}/${routerPath}`)
     if(!fs.existsSync( path.join(`${workingRouterPath}/${jsFile}.js`) )){
         fse.mkdirp( workingRouterPath , error => {
             if(error){
                 logs(`Something when wrong while trying to creating the router for you`, 'error');
             }
-            logs(`/router/${appPath} is created`, 'success');
+            logs(`/${mainObject.using.router}/${appPath} is created`, 'success');
             updateTheIndexJS();
         });
     }else{
-        logs(`/router/${appPath} is already exists`, 'info');
+        logs(`/${mainObject.using.router}/${appPath} is already exists`, 'info');
     }
 
 
@@ -49,7 +49,7 @@ module.exports = appPath => {
 
 // Genge Router:
 // https://${path.basename(cwd)}.com/${appPath}
-app.use('/${routerPath}', require(\`$\{__dirname\}/router/${appPath}\`));
+app.use('/${routerPath}', require(\`$\{__dirname\}/${mainObject.using.router}/${appPath}\`));
     `;
             fs.writeFile(`${cwd}/index.js`,data, error => {
                 if(error){
@@ -62,7 +62,7 @@ app.use('/${routerPath}', require(\`$\{__dirname\}/router/${appPath}\`));
                         if(error){
                             logs(`Something when wrong while trying to creating the ${jsFile}.js at the router session`, 'error');
                         }
-                        logs(`/router/${appPath} is available now`, 'success');
+                        logs(`/${mainObject.using.router}/${appPath} is available now`, 'success');
                     });
                 });
             });

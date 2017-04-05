@@ -11,6 +11,10 @@ const fs = require('fs');
 const path = require('path');
 const packageJSON = JSON.parse(fs.readFileSync(path.join(`${__dirname}/../package.json`)));
 
+let using = {
+    router: 'router'
+}
+
 cli
     .version(packageJSON.version)
     .option('--port <port>', 'Set the application port')
@@ -88,11 +92,21 @@ if(fs.existsSync(path.join(`${__dirname}/.genge/globalConfig.json`))){
 
 }
 
+if(fs.existsSync(path.join(`${__dirname}/.genge/globalConfig.json`))){
+
+    const jsonString = fs.readFileSync(path.join(`${__dirname}/.genge/globalConfig.json`), 'utf-8');
+    const jsonObject = JSON.parse(jsonString);
+    if(typeof jsonObject.routerdirectory !== 'undefined'){
+        using.router = jsonObject.routerdirectory;
+    }
+}
+
 module.exports = {
     packageJSON: packageJSON
     ,port: port
     ,runApp: runApp
-    ,cli: cli
+    ,cli: cli,
+    using: using
 };
 
 // Get the main action
@@ -107,7 +121,7 @@ switch(cli.args[0]){
             break;
             
             case 'router':
-                require('./create/router/router')(cli.args[2])
+                require(`./create/${using.router}/router`)(cli.args[2])
             break;
         }
     break;
@@ -115,7 +129,7 @@ switch(cli.args[0]){
     case 'remove':
         switch(cli.args[1]){
             case 'router':
-                require('./remove/router/router')(cli.args[2]);
+                require(`./remove/${using.router}r/router`)(cli.args[2]);
             break;
         }
     break;
@@ -123,12 +137,7 @@ switch(cli.args[0]){
     // Updating the global config for the Genge CLI
 
     case 'config':
-        switch(cli.args[1]){
-            // global
-            case 'global':
-                require('./config/globalConfig')(__dirname);
-            break;
-        }
+        require('./config/config')(__dirname, cli.args[1]);
     break;
 
     default:

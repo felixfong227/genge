@@ -18,21 +18,21 @@ module.exports = appPath => {
     
     const jsFile = path.basename(appPath);
     routerPath = path.join(appPath.split(jsFile)[0]);
-    if(!fs.existsSync( path.join(`${cwd}/router/${routerPath}`) )){
+    if(!fs.existsSync( path.join(`${cwd}/${mainObject.using.router}/${routerPath}`) )){
         logs(`${routerPath} is not an exists`, 'error');
         process.exit();
     }
 
-    fs.readdir( path.join(`${cwd}/router/${routerPath}`), (error, files) => {
+    fs.readdir( path.join(`${cwd}/${mainObject.using.router}/${routerPath}`), (error, files) => {
         if(error){
             logs(`Something when wrong while trying to reading the directory`, 'error');
         }
 
         files.forEach(fileName => {
-            fs.unlinkSync( path.join(`${cwd}/router/${routerPath}/${fileName}`) );
+            fs.unlinkSync( path.join(`${cwd}/${mainObject.using.router}/${routerPath}/${fileName}`) );
         });
 
-        fs.rmdir( path.join(`${cwd}/router/${routerPath}/`), error => {
+        fs.rmdir( path.join(`${cwd}/${mainObject.using.router}/${routerPath}/`), error => {
             if(error){
                 logs(`Something when wrong while trying to removing the router path`, 'error');
             }

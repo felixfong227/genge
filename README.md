@@ -85,7 +85,9 @@ $ genge remove router pony/ponyville/isfun
 # Config file
 This version of Genge, what you can config is
 1. Package Installer (NPM, Yarn)
+2. Router path(Default: ./router);
 
 ```
-$ genge config global
+$ genge config packageinstaller
+$ genge config routerpath
 ```
