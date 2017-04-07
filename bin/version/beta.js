@@ -4,6 +4,7 @@ module.exports = () => {
     const path = require('path');
     const logs = require('../coreModule/logs');
     logs('You are checking the BETA version', 'warning');
+    logs('Fetching the data from the GitHub repository', 'info');
     request(`https://raw.githubusercontent.com/felixfong227/genge/master/package.json`, (error, response, body) => {
         body = JSON.parse(body);
         const latestVersion = body.version;

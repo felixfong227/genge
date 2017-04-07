@@ -70,6 +70,13 @@ module.exports = appPath =>{
             console.log(`==== ` + `${color.info(`${installerName} Logs`)}` + ` ====`);
             console.log(data)
             console.log(`==== ` + `${color.success("Package is installed")}` + ` ====`);
+
+            if(mainObject.cli.open){
+                if(!mainObject.cli.run){
+                    logs(`The --open flat also require an --run`, 'warning');
+                }
+            }
+            
             if(mainObject.runApp){
                 startServer();
             }
