@@ -31,6 +31,11 @@ Genge will create some start up folders and files
 ```
 And with the `--run` flat, what you can do is as soon as Genge finish creating thought files and folder, it will run the app right a way
 
+# Remove your app
+```
+$ genge remove app pony.com
+```
+
 ## Install packages
 
 Once Genge finish create the files, then it will start install some necessary packages such as `express`
