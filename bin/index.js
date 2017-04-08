@@ -132,6 +132,11 @@ switch(cli.args[0]){
             case 'router':
                 require(`./remove/${using.router}r/router`)(cli.args[2]);
             break;
+
+            case 'app':
+                require('./remove/app/app')(appPath);
+            break;
+
         }
     break;
 
