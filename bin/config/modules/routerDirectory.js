@@ -25,7 +25,7 @@ module.exports = rootDir => {
                 type: 'input',
                 name: 'routerdirectory',
                 message: 'The default router directory',
-                default: rootDir
+                default: 'router'
             }
         ]).then(data => {
             jsonObject.routerdirectory = data.routerdirectory;

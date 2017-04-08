@@ -33,7 +33,7 @@ module.exports = (rootDir, action) => {
         });
 
         if(findIt){
-            require(`./modules/${orgFileName}`)(path.join(`${__dirname}/../`));
+            require(`./modules/${action.toLocaleLowerCase()}`)(path.join(`${__dirname}/../`));
         }else{
             logs(`Can't not find the correct config option`, 'error');
         }
