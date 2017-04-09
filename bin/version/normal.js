@@ -11,7 +11,7 @@ module.exports = () => {
         if(packageJSON.version < latestVersion){
             logs(`You got an update`, 'warning');
         }else{
-            logs(`You are already up-to-data`, 'info');
+            logs(`You are already up-to-data`, 'success');
         }
     });
 };
