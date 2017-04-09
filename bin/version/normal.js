@@ -9,7 +9,7 @@ module.exports = () => {
         const latestVersion = body["dist-tags"].latest;
         const packageJSON = JSON.parse( fs.readFileSync(path.join(`${__dirname}/../../package.json`), 'utf-8') );
         if(packageJSON.version < latestVersion){
-            logs(`You got an update`, 'info');
+            logs(`You got an update`, 'warning');
         }else{
             logs(`You are already up-to-data`, 'info');
         }
