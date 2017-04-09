@@ -96,3 +96,26 @@ This version of Genge, what you can config is
 $ genge config packageinstaller
 $ genge config routerpath
 ```
+
+# View the config file
+```
+$ genge config show
+```
+
+Genge will output the content of the `globalConfig.json`
+
+# Update
+
+```
+$ genge update
+$ genge update --beta
+```
+
+Check for updates
+
+By default, Genge will fetching data from the NPM registry
+
+And what the `--beat` flat, Genge will instead fetching data from the GitHub repository
+
+PS: For this verson of Genge, will only notif you, and won't update the app itself
+
