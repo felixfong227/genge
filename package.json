@@ -1,6 +1,6 @@
 {
   "name": "genge",
-  "version": "1.7.5",
+  "version": "1.8.0",
   "description": "A simple CLI that help create express app more easily",
   "main": "bin/index.js",
   "repository": {
@@ -37,6 +37,11 @@
   "keywords": [
     "express",
     "expressjs",
-    "genge"
+    "genge",
+    "cli",
+    "quick",
+    "setup",
+    "website",
+    "webapp"
   ]
 }

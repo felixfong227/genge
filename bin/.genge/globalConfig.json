@@ -1,4 +1,4 @@
 {
   "packageInstaller": "yarn",
-  "routerdirectory": "router"
+  "routerdirectory": "app/router"
 }

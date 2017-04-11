@@ -119,3 +119,10 @@ And what the `--beat` flat, Genge will instead fetching data from the GitHub rep
 
 PS: For this verson of Genge, will only notif you, and won't update the app itself
 
+# Cloud config
+Grap the JSON file from the internet(cloud)
+
+So you can start sharing your config file via Gist with your friends
+```
+$ genge config cloud <URL>https://gist.github.com/gengeConfig.json<URL>
+```

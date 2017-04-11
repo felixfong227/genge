@@ -35,7 +35,17 @@ module.exports = (rootDir, action) => {
         if(findIt){
             require(`./modules/${action.toLocaleLowerCase()}`)(path.join(`${__dirname}/../`));
         }else{
-            logs(`Can't not find the correct config option`, 'error');
+
+            switch(action.toLocaleLowerCase()){
+
+                case 'cloud':
+                    require('./cloud/getFile')(rootDir);
+                break;
+
+                default:
+                    logs(`Can't not find the correct config option`, 'error');
+                break;
+            }
         }
 
     });
