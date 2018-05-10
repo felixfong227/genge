@@ -115,7 +115,7 @@ Check for updates
 
 By default, Genge will fetching data from the NPM registry
 
-And what the `--beat` flat, Genge will instead fetching data from the GitHub repository
+And what the `--beta` flat, Genge will instead fetching data from the GitHub repository
 
 PS: For this verson of Genge, will only notif you, and won't update the app itself
 
